@@ -45,6 +45,10 @@ async function createTicket(ticket: CreateTicketParams) {
   });
 }
 
+async function findTicketTypeById(ticketId: number) {
+  return prisma.ticketType.findUnique({ where: { id: ticketId } });
+}
+
 async function ticketProcessPayment(ticketId: number) {
   return prisma.ticket.update({
     where: {
@@ -65,6 +69,7 @@ const ticketRepository = {
   findTickeyById,
   findTickeWithTypeById,
   ticketProcessPayment,
+  findTicketTypeById
 };
 
 export default ticketRepository;
